@@ -100,6 +100,9 @@ class Atleta:
         self.peso = peso
         self.aposentado = False
         self.aquecido = False
+        self.nadando = False
+        self.pedalando = False
+        self.correndo = False
 
     def aquecer(self):
         print(f"{self.nome} está aquecendo!")
@@ -115,14 +118,28 @@ class Ciclista(Atleta):
         super().__init__(nome, peso)
 
     def pedalar(self):
-        print(f"{self.nome} está peladando!")
+        if self.aquecido == True:
+            print(f"{self.nome} está aquecido!")
+            if self.aposentado == False:
+                print(f"{self.nome} foi pedalar!")
+            else:
+                print(f"{self.nome} não pode pedalar, pois está aposentado!")
+        else:
+            print(f"{self.nome} não está aquecido, então, aqueça antes de pedalar!")
 
 class Nadador(Atleta):
     def __int__(self, nome, peso):
         super().__init__(nome, peso)
 
     def nadar(self):
-        print(f"{self.nome} está nadando!")
+        if self.aquecido == True:
+            print(f"{self.nome} está aquecido!")
+            if self.aposentado == False:
+                print(f"{self.nome} foi nadar!")
+            else:
+                print(f"{self.nome} não pode nadar, pois está aposentado!")
+        else:
+            print(f"{self.nome} não está aquecido, então, aqueça antes de nadar!")
 
 class Corredor(Atleta):
     def __int__(self, nome, peso):
@@ -143,10 +160,61 @@ class Tri_atleta(Atleta):
         super().__init__(nome, peso)
 
     def pedalar(self):
-        print(f"{self.nome} está peladando!")
+        if self.pedalando == False:
+            if self.aquecido == False:
+                print(f"{self.nome} está aquecido!")
+                if self.nadando == False:
+                    if self.correndo == False:
+                        if self.aposentado == False:
+                            print(f"{self.nome} foi pedalar!")
+                            self.pedalar = True
+                        else:
+                            print(f"{self.nome} não pode pedalar, pois está aposentado!")
+                    else:
+                        print(f"{self.nome} não pode pedalar, pois está na fase da corrida!")
+                else:
+                    print(f"{self.nome} não pode pedalar, pois está na fase da natação!")
+            else:
+                print(f"{self.nome} não está aquecido, então, aqueça antes de pedalar!")
+        else:
+            print(f"{self.nome} já está pedalando!")
 
     def nadar(self):
-        print(f"{self.nome} está nadando!")
+        if self.nadando == False:
+            if self.aquecido == False:
+                print(f"{self.nome} está aquecido!")
+                if self.pedalando == False:
+                    if self.correndo == False:
+                        if self.aposentado == False:
+                            print(f"{self.nome} foi nadar!")
+                            self.nadar = True
+                        else:
+                            print(f"{self.nome} não pode nadar, pois está aposentado!")
+                    else:
+                        print(f"{self.nome} não pode nadar, pois está na fase da corrida!")
+                else:
+                    print(f"{self.nome} não pode nadar, pois está na pedalando!")
+            else:
+                print(f"{self.nome} não está aquecido, então, aqueça antes de nadar!")
+        else:
+            print(f"{self.nome} já está nadando!")
 
     def correr(self):
-        print(f"{self.nome} está correndo!")
+        if self.correndo == False:
+            if self.aquecido == False:
+                print(f"{self.nome} está aquecido!")
+                if self.pedalando == False:
+                    if self.nadando == False:
+                        if self.aposentado == False:
+                            print(f"{self.nome} foi correr!")
+                            self.correr = True
+                        else:
+                            print(f"{self.nome} não pode correr, pois está aposentado!")
+                    else:
+                        print(f"{self.nome} não pode correr, pois está na fase da natação!")
+                else:
+                    print(f"{self.nome} não pode correr, pois está na pedalando!")
+            else:
+                print(f"{self.nome} não está aquecido, então, aqueça antes de correr!")
+        else:
+            print(f"{self.nome} já está correndo!")
