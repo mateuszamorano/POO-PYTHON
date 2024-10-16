@@ -218,3 +218,12 @@ class Tri_atleta(Atleta):
                 print(f"{self.nome} não está aquecido, então, aqueça antes de correr!")
         else:
             print(f"{self.nome} já está correndo!")
+            
+def gravar_texto(texto):
+    with open("registro.txt", "a") as arquivo:
+        arquivo.write(texto)
+
+def ler_texto(texto):
+    with open("registro.txt", "r") as arquivo2:
+        texto = arquivo2.read()
+        print(texto)
